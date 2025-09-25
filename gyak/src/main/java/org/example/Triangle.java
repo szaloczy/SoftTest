@@ -23,15 +23,19 @@ public class Triangle {
         return (a == b) && (b == c);
     }
 
-    public boolean isRightAngled(){
-        throw new UnsupportedOperationException("This function is not yet implemented");
+    public boolean isRightAngled(Triangle triangle){
+        return Math.pow(triangle.a,2) + Math.pow(triangle.b,2) == Math.pow(triangle.c,2);
     }
 
     public int getPerimeter(){
         return a + b + c;
     }
 
-    public double getArea(){
-        throw new UnsupportedOperationException("This function is not yet implemented");
+    public double getArea() {
+        double area = 0;
+        double s = (double) (a + b + c) / 2;
+        area = Math.sqrt(s * ( s - a) * ( s - b) * (s - c));
+
+        return area;
     }
 }

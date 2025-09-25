@@ -25,8 +25,8 @@ public class TriangleTest {
         Assertions.assertTrue(isIsosceles, "Expected to be issoscele");
         //Assertions.assertEquals(9, myTirangle.getArea());
 
-//        double area = myTirangle.getArea();
-//        Assertions.assertEquals(9,area);
+        //double area = myTirangle.getArea();
+        //Assertions.assertEquals(9,area);
     }
 
     @Test
@@ -50,12 +50,28 @@ public class TriangleTest {
 
     @ParameterizedTest(name="Data-driven triangle test")
     @MethodSource("getTestData")
-    public void testParameterized(int a, int b, int c, int expectedPerimiter, boolean expectedIsoscele) {
+    public void testParameterized(int a, int b, int c, int expectedPerimeter, boolean expectedIsosceles) {
         Triangle triangle = new Triangle(a,b,c);
         int perimeter = triangle.getPerimeter();
-        boolean isoscele = triangle.isIsosceles();
+        boolean isosceles = triangle.isIsosceles();
 
-        Assertions.assertEquals(expectedPerimiter, perimeter);
-        Assertions.assertEquals(expectedIsoscele, isoscele);
+        Assertions.assertEquals(expectedPerimeter, perimeter);
+        Assertions.assertEquals(expectedIsosceles, isosceles);
+    }
+
+    @Test()
+    @DisplayName("Test is right-angled")
+    public void testIsRightAngled() {
+        Triangle triangle = new Triangle(3,4, 5);
+
+        Assertions.assertTrue(triangle.isRightAngled(triangle));
+    }
+
+    @Test()
+    @DisplayName("Test is not right-angled")
+    public void testIsNotRightAngled() {
+        Triangle triangle = new Triangle(2,2,2);
+
+        Assertions.assertFalse(triangle.isRightAngled(triangle));
     }
 }
