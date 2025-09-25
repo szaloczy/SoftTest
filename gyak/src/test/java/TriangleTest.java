@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.text.DecimalFormat;
 import java.util.stream.Stream;
 
 public class TriangleTest {
@@ -22,7 +23,7 @@ public class TriangleTest {
 
         //Assert
         Assertions.assertTrue(value);
-        Assertions.assertTrue(isIsosceles, "Expected to be issoscele");
+        Assertions.assertTrue(isIsosceles, "Expected to be isosceles");
         //Assertions.assertEquals(9, myTirangle.getArea());
 
         //double area = myTirangle.getArea();
@@ -73,5 +74,14 @@ public class TriangleTest {
         Triangle triangle = new Triangle(2,2,2);
 
         Assertions.assertFalse(triangle.isRightAngled(triangle));
+    }
+
+    @Test()
+    @DisplayName("Test triangle area")
+    public void testGetArea() {
+
+        Triangle triangle = new Triangle(4, 6, 5);
+
+        Assertions.assertEquals(10.0, triangle.getArea());
     }
 }

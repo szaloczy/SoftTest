@@ -1,5 +1,7 @@
 package org.example;
 
+import java.text.DecimalFormat;
+
 public class Triangle {
     private int a, b, c;
 
@@ -36,6 +38,6 @@ public class Triangle {
         double s = (double) (a + b + c) / 2;
         area = Math.sqrt(s * ( s - a) * ( s - b) * (s - c));
 
-        return area;
+        return Math.round(area);
     }
 }
