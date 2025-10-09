@@ -10,8 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class MockTableServiceTest {
@@ -46,5 +46,19 @@ public class MockTableServiceTest {
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> realService.getLargestTable());
         Assertions.assertEquals("No tables found in repository", exception.getMessage());
         verify(mockRepository).findAll();
+    }
+
+    @Test
+    public void getTableCapacityTest() {
+
+        Table newTable = new Table(120,180,30);
+        //when(mockRepository.findById(123)).thenReturn(newTable);
+        when(mockRepository.findById(anyInt())).thenReturn(newTable);
+
+        int actualTableCapacity = realService.getTableCapacity(anyInt());
+
+        //Assertions.assertEquals(newTable.getCapacity(), actualTableCapacity); Rossz megoldás a newTable.getCapacity() helyett számold ki rendesen
+        Assertions.assertEquals(10, actualTableCapacity);
+        verify(mockRepository, times(1)).findById(anyInt());
     }
 }
