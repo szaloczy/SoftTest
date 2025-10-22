@@ -2,6 +2,8 @@ package org.example;
 
 public class User {
 
+    private final UserRepository userRepository = new UserRepository();
+
     private String userName, password;
     private int id;
     private boolean isLoggedIn;
@@ -38,7 +40,7 @@ public class User {
     }
 
     public void updatePwd(String newPassword, boolean isLoggedIn) {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        this.userRepository.setPassword(id, newPassword);
     }
 
 }
