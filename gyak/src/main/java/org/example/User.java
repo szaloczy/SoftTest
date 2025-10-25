@@ -39,7 +39,7 @@ public class User {
         return loginCount;
     }
 
-    public void updatePwd(String newPassword, boolean isLoggedIn) {
+    public void updatePwd(String newPassword) {
         this.userRepository.setPassword(id, newPassword);
     }
 

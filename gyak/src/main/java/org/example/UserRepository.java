@@ -2,7 +2,7 @@ package org.example;
 
 public class UserRepository {
 
-    public void setPassword(int id, String newPwd) {
+    public boolean setPassword(int id, String newPwd) {
         throw new UnsupportedOperationException("not implemented yet");
     }
 }

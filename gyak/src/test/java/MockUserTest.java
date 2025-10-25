@@ -1,6 +1,10 @@
+import org.example.TableService;
 import org.example.User;
+import org.example.UserRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -12,6 +16,12 @@ public class MockUserTest {
 
     @Mock
     User mockUser;
+
+    @Mock
+    UserRepository userRepository;
+
+    @InjectMocks
+    TableService realService;
 
     @Test
     public void mockUserTest() {
@@ -30,6 +40,17 @@ public class MockUserTest {
         verify(mockUser).isLoggedIn();
         verify(mockUser).getPassword();
         verify(mockUser).getId();
+    }
+
+    @Test
+    public void setPasswordTest() {
+        User newUser = new User();
+        when(mockUser.getId()).thenReturn(123);
+
+        UnsupportedOperationException exception = Assertions.assertThrows(UnsupportedOperationException.class, () -> userRepository.setPassword(mockUser.getId(), "asd"));
+        Assertions.assertEquals("not implemented yet", exception.getMessage());
+        verify(userRepository).setPassword(mockUser.getId(), "asd");
+        //when(userRepository.setPassword(newUser.getId(), "newpwd")).thenReturn(true);
     }
 
 }
