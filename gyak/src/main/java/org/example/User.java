@@ -2,15 +2,13 @@ package org.example;
 
 public class User {
 
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
     private String userName, password;
     private int id;
     private boolean isLoggedIn;
 
     private int loginCount;
-
-    public User() {}
 
     public boolean isLoggedIn() {
          return isLoggedIn;
