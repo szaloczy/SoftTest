@@ -23,6 +23,9 @@ public class MockUserTest {
     @InjectMocks
     TableService realService;
 
+    @InjectMocks
+    User testUser;
+
     @Test
     public void mockUserTest() {
         //define behaviour
@@ -36,6 +39,11 @@ public class MockUserTest {
         String password = mockUser.getPassword();
         int id = mockUser.getId();
 
+        Assertions.assertEquals("TesztElek", name);
+        Assertions.assertTrue(isLoggedIn);
+        Assertions.assertEquals("TOPSECRET", password);
+        Assertions.assertEquals(123, id);
+
         verify(mockUser).getUserName();
         verify(mockUser).isLoggedIn();
         verify(mockUser).getPassword();
@@ -44,13 +52,17 @@ public class MockUserTest {
 
     @Test
     public void setPasswordTest() {
-        User newUser = new User();
-        when(mockUser.getId()).thenReturn(123);
+        testUser.setId(123);
 
-        UnsupportedOperationException exception = Assertions.assertThrows(UnsupportedOperationException.class, () -> userRepository.setPassword(mockUser.getId(), "asd"));
+        when(userRepository.setPassword(123, "NEWPWD"))
+            .thenThrow(new UnsupportedOperationException("not implemented yet"));
+
+        UnsupportedOperationException exception = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+            testUser.updatePwd("NEWPWD");
+        });
+
         Assertions.assertEquals("not implemented yet", exception.getMessage());
-        verify(userRepository).setPassword(mockUser.getId(), "asd");
-        //when(userRepository.setPassword(newUser.getId(), "newpwd")).thenReturn(true);
+        verify(userRepository).setPassword(123, "NEWPWD");
     }
 
 }

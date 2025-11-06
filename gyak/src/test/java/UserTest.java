@@ -18,6 +18,7 @@ public class UserTest {
         Assertions.assertEquals(0, user.getLoginCount());
     }
 
+
     @Test
     @DisplayName("Test that exception is thrown")
     public void testExceptionThrow() {
@@ -25,7 +26,7 @@ public class UserTest {
         User user = new User();
 
         //Act + Assert
-        Assertions.assertThrows(UnsupportedOperationException.class, () -> user.updatePwd("SDs", false));
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> user.updatePwd("SDs"));
     }
 
     @Test

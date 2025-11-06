@@ -2,13 +2,15 @@ package org.example;
 
 public class User {
 
-    private final UserRepository userRepository = new UserRepository();
+    private  UserRepository userRepository;
 
     private String userName, password;
     private int id;
     private boolean isLoggedIn;
 
     private int loginCount;
+
+    public User() {}
 
     public boolean isLoggedIn() {
          return isLoggedIn;
@@ -33,6 +35,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getLoginCount() {
